@@ -23,7 +23,11 @@
   "bin": {
     "faiton-benchmark": "bin/faiton-benchmark"
   },
-  "dependencies": {},
+  "dependencies": {
+    "commander": "^2.2.0",
+    "glob": "^4.0.3",
+    "yiwn-extend": "^1.0.1"
+  },
   "devDependencies": {
     "mocha": "^1.20.1",
     "jshint": "^2.5.2"

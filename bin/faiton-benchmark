@@ -1,4 +1,79 @@
 #!/usr/bin/env node
 
+/**
+ * Module dependencies.
+ */
+
+var fs      = require('fs'),
+    path    = require('path'),
+    util    = require('util'),
+    vm      = require('vm');
+
+var glob    = require('glob');
+
+var extend  = require('yiwn-extend');
+
+var program = require('commander');
+
 var benchmark = require('..');
 
+/**
+ * Globals to pass to context.
+ */
+
+var global = {
+        require : require,
+        console : console,
+        module  : module,
+        process : process
+    };
+
+/**
+ * Default path to look for scripts.
+ */
+
+var pattern = './benchmark/*.js';
+
+/**
+ * CLI interface.
+ */
+
+program
+    .version('0.0.0')
+    .usage('[options] <file ...>')
+    .option('-R, --reporter [name]', 'Use specified reporter', 'spec')
+    .parse(process.argv);
+
+
+if (program.args.length)
+    pattern = program.args.shift();
+
+glob(pattern, function(err, matches){
+    if (err) throw err;
+
+    var match = path.resolve(process.cwd(), matches.shift());
+
+    runner(match);
+});
+
+
+
+/**
+ * Run script in a proper context.
+ *
+ * @param  {String} file
+ * @api private
+ */
+
+function runner(file) {
+    var locals = extend({
+            __filename  : file,
+            __dirname   : path.dirname(file)
+        }, global, benchmark.facade);
+
+    var source  = fs.readFileSync(file, 'utf8')
+        script  = vm.createScript(source, file),
+        context = vm.createContext(locals);
+
+    script.runInContext(context);
+}
