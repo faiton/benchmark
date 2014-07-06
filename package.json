@@ -20,6 +20,9 @@
     "url": "https://github.com/faiton/benchmark/issues"
   },
   "homepage": "https://github.com/faiton/benchmark",
+  "bin": {
+    "faiton-benchmark": "bin/faiton-benchmark"
+  },
   "dependencies": {},
   "devDependencies": {
     "mocha": "^1.20.1",
