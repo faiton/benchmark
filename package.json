@@ -1,0 +1,28 @@
+{
+  "name": "faiton-benchmark",
+  "version": "0.0.0",
+  "description": "Run performance tests.",
+  "main": "index.js",
+  "scripts": {
+    "test": "make test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/faiton/benchmark.git"
+  },
+  "keywords": [
+    "benchmark",
+    "performance"
+  ],
+  "author": "Mushex Antaranian",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/faiton/benchmark/issues"
+  },
+  "homepage": "https://github.com/faiton/benchmark",
+  "dependencies": {},
+  "devDependencies": {
+    "mocha": "^1.20.1",
+    "jshint": "^2.5.2"
+  }
+}
