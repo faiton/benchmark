@@ -1,17 +1,17 @@
 suite('Title', function(){
-    var str;
+    var str = 'Hello World!';
 
-    setup(function(){
-        str = 'Hello World!';
-    });
+    // setup(function(){
+    //     str = 'Hello World!';
+    // });
 
-    teardown(function(){
-        str = '';
-    });
+    // teardown(function(){
+    //     str = '';
+    // });
 
     add('RegExp#test', function(done){
         /o/.test(str);
-        done()
+        done.resolve();
     });
 
     add('String#indexOf', function(){
