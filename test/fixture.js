@@ -1,16 +1,17 @@
 suite('Text', function(){
-    var str = 'Hello World!';
+    var str = 'Hello World!',
+        re;
 
-    // setup(function(){
-    //     str = 'Hello World!';
-    // });
+    setup(function(){
+        re = /o/;
+    });
 
-    // teardown(function(){
-    //     str = '';
-    // });
+    teardown(function(){
+        str = '';
+    });
 
-    add('RegExp#test', function(deferred){
-        /o/.test(str);
+    add('RegExp#test', function(){
+        re.test(str);
     });
 
     add('String#indexOf', function(){
@@ -20,12 +21,12 @@ suite('Text', function(){
 
 
 suite('Timeout', function(){
-    add('setTimeout 4', function(deferred){
+    add('setTimeout 4x', function(deferred){
         setTimeout(function(){
             deferred.resolve();
         }, 4);
     });
-    add('setTimeout 10', function(deferred){
+    add('setTimeout 20x', function(deferred){
         setTimeout(function(){
             deferred.resolve();
         }, 20);
