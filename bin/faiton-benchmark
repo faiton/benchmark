@@ -15,7 +15,7 @@ var extend  = require('yiwn-extend');
 
 var program = require('commander');
 
-var benchmark = require('..');
+var Runner  = require('..');
 
 /**
  * Globals to pass to context.
@@ -69,11 +69,13 @@ function runner(file) {
     var locals = extend({
             __filename  : file,
             __dirname   : path.dirname(file)
-        }, global, benchmark.facade);
+        }, global, Runner.facade);
 
     var source  = fs.readFileSync(file, 'utf8')
         script  = vm.createScript(source, file),
         context = vm.createContext(locals);
 
     script.runInContext(context);
+
+    Runner.run();
 }
